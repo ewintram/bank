@@ -22,12 +22,24 @@ describe Account do
       account.deposit(5, transaction)
     end
 
-    it "deposits a given amount into the account" do
+    it "adds the deposited amount to the balance" do
       expect(account.balance).to eq 5
     end
 
     it "adds a transaction to the transactions array" do
       expect(account.transactions).to include transaction
+    end
+  end
+
+  describe "#withdraw" do
+
+    before(:each) do
+      account.deposit(5, transaction)
+    end
+
+    it "removes the withdrawn amount from the balance" do
+      account.withdraw(1, transaction)
+      expect(account.balance).to eq 4
     end
   end
 
