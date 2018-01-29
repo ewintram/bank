@@ -1,9 +1,7 @@
-require 'statement'
-
 describe Statement do
-  let(:deposit)    { double :deposit, amount: 500, balance: 500, date: Time.new, type: :credit }
-  let(:withdrawal) { double :withdrawal, amount: 100, balance: 400, date: Time.new, type: :debit }
-  let(:account)    { double :account, transactions: [deposit, withdrawal] }
+  let(:deposit)       { double :deposit, amount: 500, balance: 500, date: Time.new, type: :credit }
+  let(:withdrawal)    { double :withdrawal, amount: 100, balance: 400, date: Time.new, type: :debit }
+  let(:account)       { double :account, transactions: [deposit, withdrawal] }
   subject(:statement) { described_class }
 
   describe '#to_string' do

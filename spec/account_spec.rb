@@ -1,8 +1,6 @@
-require 'account'
-
 describe Account do
   let(:transaction_class) { double :transaction_class, new: :transaction }
-  subject(:account) { described_class.new(10, transaction_class) }
+  subject(:account)       { described_class.new(10, transaction_class) }
 
   describe '#deposit' do
     before(:each) do

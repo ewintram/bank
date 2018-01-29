@@ -29,5 +29,4 @@ class Account
   def add_transaction(transaction)
     transactions << transaction
   end
-
 end
