@@ -1,28 +1,33 @@
 require_relative 'transaction'
-require_relative 'account_printer'
+require_relative 'statement'
 
 class Account
-
   DEFAULT_BALANCE = 0
-
   attr_reader :balance, :transactions
 
-  def initialize
-    @balance = DEFAULT_BALANCE
+  def initialize(default_balance = DEFAULT_BALANCE, transaction_class = Transaction)
+    @balance = default_balance
     @transactions = []
+    @transaction_class = transaction_class
   end
 
-  def deposit(amount, transaction = Transaction.new)
-    transaction.credit(amount)
-    transactions << transaction
+  def deposit(amount)
     @balance += amount
+    transaction = @transaction_class.new(amount, balance, :credit)
+    add_transaction(transaction)
   end
 
-  def withdraw(amount, transaction = Transaction.new)
+  def withdraw(amount)
     raise 'Insufficient funds' if balance < amount
-    transaction.debit(amount)
-    transactions << transaction
     @balance -= amount
+    transaction = @transaction_class.new(amount, balance, :debit)
+    add_transaction(transaction)
+  end
+
+  private
+
+  def add_transaction(transaction)
+    transactions << transaction
   end
 
 end

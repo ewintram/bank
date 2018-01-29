@@ -1,46 +1,34 @@
 require 'account'
 
 describe Account do
-  let(:deposit) { double :deposit, credit: nil }
-  let(:withdrawal) { double :withdrawal, debit: nil }
-  subject(:account) { described_class.new }
-
-  describe '#initialize' do
-    it 'initializes with a balance of 0' do
-      expect(account.balance).to eq 0
-    end
-
-    it 'initializes with an empty array of transactions' do
-      expect(account.transactions).to be_empty
-    end
-  end
+  let(:transaction_class) { double :transaction_class, new: :transaction }
+  subject(:account) { described_class.new(10, transaction_class) }
 
   describe '#deposit' do
     before(:each) do
-      account.deposit(5, deposit)
+      account.deposit(5)
     end
 
     it 'adds the deposited amount to the balance' do
-      expect(account.balance).to eq 5
+      expect(account.balance).to eq 15
     end
 
     it 'adds a transaction to the transactions array' do
-      expect(account.transactions).to include deposit
+      expect(account.transactions).to include :transaction
     end
   end
 
   describe '#withdraw' do
     before(:each) do
-      account.deposit(5, deposit)
-      account.withdraw(1, withdrawal)
+      account.withdraw(1)
     end
 
     it 'deducts the withdrawn amount from the balance' do
-      expect(account.balance).to eq 4
+      expect(account.balance).to eq 9
     end
 
     it 'adds a transaction to the transactions array' do
-      expect(account.transactions).to include withdrawal
+      expect(account.transactions).to include :transaction
     end
 
     it 'throws an error message when the withdrawal amount is greater than the balance' do

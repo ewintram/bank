@@ -1,33 +1,19 @@
 require 'transaction'
 
 describe Transaction do
-  subject(:transaction) { described_class.new }
+  subject(:transaction) { described_class.new(:amount, :balance, :type) }
 
-  describe '#debit' do
-    before(:each) do
-      transaction.debit(1)
+  describe '#initialize' do
+    it 'initializes with a given amount' do
+      expect(transaction.amount).to eq :amount
     end
 
-    it 'logs the transaction type as a debit' do
-      expect(transaction.type).to eq :debit
+    it 'initializes with a given balance' do
+      expect(transaction.balance).to eq :balance
     end
 
-    it 'stores the debit amount as an instance variable' do
-      expect(transaction.amount).to eq -1
-    end
-  end
-
-  describe '#credit' do
-    before(:each) do
-      transaction.credit(1)
-    end
-
-    it 'logs the transaction type as a credit' do
-      expect(transaction.type).to eq :credit
-    end
-
-    it 'stores the credit amount as an instance variable' do
-      expect(transaction.amount).to eq 1
+    it 'initializes with a type' do
+      expect(transaction.type).to eq :type
     end
   end
 end

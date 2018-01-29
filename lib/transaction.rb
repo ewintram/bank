@@ -1,25 +1,12 @@
 require 'date'
 
 class Transaction
-  attr_reader :date, :type, :amount
+  attr_reader :amount, :balance, :date, :type
 
-  def initialize
-    @date = Time.now
+  def initialize(amount, balance, type)
+    @amount = amount
+    @balance = balance
+    @date = Time.new
+    @type = type
   end
-
-  def debit(amount)
-    @type = :debit
-    set_amount(amount * -1)
-  end
-
-  def credit(amount)
-    @type = :credit
-    set_amount(amount)
-  end
-
-  private
-
-    def set_amount(amount)
-      @amount = amount
-    end
 end
