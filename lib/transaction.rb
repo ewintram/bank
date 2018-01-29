@@ -9,7 +9,17 @@ class Transaction
 
   def debit(amount)
     @type = :debit
-    @amount = amount
+    set_amount(amount)
   end
 
+  def credit(amount)
+    @type = :credit
+    set_amount(amount)
+  end
+
+  private
+
+    def set_amount(amount)
+      @amount = amount
+    end
 end
