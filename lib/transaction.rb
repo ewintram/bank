@@ -1,2 +1,10 @@
+require 'date'
+
 class Transaction
-end 
+  attr_reader :date
+
+  def initialize
+    @date = Time.now.strftime('%D')
+  end
+
+end
