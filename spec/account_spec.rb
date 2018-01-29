@@ -2,8 +2,8 @@ require 'account'
 
 describe Account do
 
-  let(:transaction_class) { double :transaction_class, new: "test_transaction" }
-  subject(:account) { described_class.new(transaction_class) }
+  let(:transaction) { double :transaction, credit: nil }
+  subject(:account) { described_class.new }
 
   describe "#initialize" do
 
@@ -19,7 +19,7 @@ describe Account do
   describe "#deposit" do
 
     before(:each) do
-      account.deposit(5)
+      account.deposit(5, transaction)
     end
 
     it "deposits a given amount into the account" do
@@ -27,7 +27,7 @@ describe Account do
     end
 
     it "adds a transaction to the transactions array" do
-      expect(account.transactions).to include "test_transaction"
+      expect(account.transactions).to include transaction
     end
   end
 
