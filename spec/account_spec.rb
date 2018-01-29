@@ -2,7 +2,9 @@ require 'account'
 
 describe Account do
 
-  let(:transaction) { double :transaction, credit: nil }
+  let(:deposit) { double :deposit, credit: nil }
+  let(:withdrawal) { double :withdrawal, credit: nil }
+
   subject(:account) { described_class.new }
 
   describe "#initialize" do
@@ -19,7 +21,7 @@ describe Account do
   describe "#deposit" do
 
     before(:each) do
-      account.deposit(5, transaction)
+      account.deposit(5, deposit)
     end
 
     it "adds the deposited amount to the balance" do
@@ -27,20 +29,25 @@ describe Account do
     end
 
     it "adds a transaction to the transactions array" do
-      expect(account.transactions).to include transaction
+      expect(account.transactions).to include deposit
     end
   end
 
   describe "#withdraw" do
 
     before(:each) do
-      account.deposit(5, transaction)
+      account.deposit(5, deposit)
+      account.withdraw(1, withdrawal)
     end
 
-    it "removes the withdrawn amount from the balance" do
-      account.withdraw(1, transaction)
+    it "deducts the withdrawn amount from the balance" do
       expect(account.balance).to eq 4
     end
+
+    it "adds a transaction to the transactions array" do
+      expect(account.transactions).to include withdrawal
+    end
+
   end
 
 end
