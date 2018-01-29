@@ -14,7 +14,7 @@ To run the tests, on the command line, run
 
 To interact with the ruby bank app, in irb, type
 
-`require 'account'`
+`require './lib/account'`
 
 
 ### User Stories
