@@ -1,7 +1,28 @@
+# Ruby Bank App
+
+This bank app allows a user to deposit and withdraw money and print their statement, storing the data in memory.
+
+### Install
+
+Clone the repo. Then, on the command line, run
+
+`bundle`
+
+To run the tests, on the command line, run
+
+`rspec`
+
+To interact with the ruby bank app, in irb, type
+
+`require 'account'`
+
+
+### User Stories
+
 ```
 As a user
 So that I can manage my finances
-I want to have a bank account
+I want to have a bank account with a balance
 ```
 
 ```
@@ -19,5 +40,5 @@ I want to make a withdrawal
 ```
 As a user
 So that I can see the values and dates of my withdrawals and deposits
-I want to print my balance
+I want to print my statement
 ```
