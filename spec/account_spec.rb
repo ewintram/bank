@@ -15,4 +15,16 @@ describe Account do
     end
   end
 
+  describe "#deposit" do
+
+    before(:each) do
+      account.deposit(5)
+    end
+
+    it "deposits a given amount into the account" do
+      expect(account.balance).to eq 5
+    end
+
+  end
+
 end
