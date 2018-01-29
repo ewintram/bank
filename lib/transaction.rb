@@ -4,12 +4,12 @@ class Transaction
   attr_reader :date, :type, :amount
 
   def initialize
-    @date = Time.now.strftime('%D')
+    @date = Time.now
   end
 
   def debit(amount)
     @type = :debit
-    set_amount(amount)
+    set_amount(amount * -1)
   end
 
   def credit(amount)

@@ -1,4 +1,5 @@
 require_relative 'transaction'
+require_relative 'account_printer'
 
 class Account
 
