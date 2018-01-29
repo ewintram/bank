@@ -3,7 +3,7 @@ require 'account'
 describe Account do
 
   let(:deposit) { double :deposit, credit: nil }
-  let(:withdrawal) { double :withdrawal, credit: nil }
+  let(:withdrawal) { double :withdrawal, debit: nil }
 
   subject(:account) { described_class.new }
 
