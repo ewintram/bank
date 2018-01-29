@@ -14,13 +14,14 @@ class Account
 
   def deposit(amount, transaction = Transaction.new)
     transaction.credit(amount)
-    @transactions << transaction
+    transactions << transaction
     @balance += amount
   end
 
   def withdraw(amount, transaction = Transaction.new)
+    raise 'Insufficient funds' if balance < amount
     transaction.debit(amount)
-    @transactions << transaction
+    transactions << transaction
     @balance -= amount
   end
 

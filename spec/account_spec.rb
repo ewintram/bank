@@ -43,5 +43,8 @@ describe Account do
       expect(account.transactions).to include withdrawal
     end
 
+    it 'throws an error message when the withdrawal amount is greater than the balance' do
+      expect { account.withdraw(10) }.to raise_error 'Insufficient funds'
+    end
   end
 end
