@@ -2,7 +2,8 @@ require 'account'
 
 describe Account do
 
-  subject(:account) { described_class.new }
+  let(:transaction_class) { double :transaction_class, new: "test_transaction" }
+  subject(:account) { described_class.new(transaction_class) }
 
   describe "#initialize" do
 
@@ -25,6 +26,9 @@ describe Account do
       expect(account.balance).to eq 5
     end
 
+    it "adds a transaction to the transactions array" do
+      expect(account.transactions).to include "test_transaction"
+    end
   end
 
 end
